@@ -1,0 +1,11 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block body %}
+
+<span>showing content of /posts/{{ title }}</span>
+
+<p>
+    {{ content|safe }}
+</p>
+
+{% endblock body %}

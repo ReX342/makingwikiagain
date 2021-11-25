@@ -16,7 +16,7 @@
                     <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
                 </form>
                 <div>
-                    <a href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'encyclopedia:index' %}">Home</a>
                 </div>
                 <div>
                     Create New Page
@@ -25,10 +25,10 @@
                     Random Page
                 </div>
                 <div>
-                    <a href="{% url 'view' %}">View</a>
+                    <a href="{% url 'encyclopedia:view' %}">View</a>
                 </div>
                 <div>
-                    <a href="{% url 'detailview' %}">Detail View</a>
+                    <a href="{% url 'encyclopedia:detail view' title %}">Detail View</a>
                 </div>
                 {% block nav %}
                 {% endblock %}

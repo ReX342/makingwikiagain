@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
-from django.shortcuts import render
+from django.shortcuts import render, reverse
+from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404, HttpResponse
 from django.urls import reverse
 from .forms import PageForm
+
+import markdown
 
 from . import util
 from . import forms
@@ -18,10 +19,18 @@ def crp(request):
     if request.method == 'POST':
         form = PageForm(request.POST)
         if form.is_valid():
-            pass  # does nothing, just trigger the validation
+            title = form.cleaned_data['title']
+            content = form.cleaned_data['content']
+            util.save_entry(title, content)
+            return HttpResponseRedirect(reverse('view', kwargs={'title': title}))
+        else:
+            pass
     else:
-        form = PageForm()
-    return render(request, 'home.html', {'form': form})
+        form = PageForm(request.POST)
+    return render(request, 'crp.html', {'form': form})
+
+
+
     # if request.method == "POST":
     #     form = forms.PageForm(request.POST)
     #     if form.is_valid():
@@ -38,17 +47,27 @@ def crp(request):
     return render(request, "encyclopedia/crp.html", {
         "form": PageForm()
     })
+#return HttpResponseRedirect(reverse('view', kwargs={'name': title}))
+#Look at documentation source (lecture 3 source code base) for ragna wiki
 
-# def index from tasks from lecture 3    
+# def index from tasks from lecture 3
+
+# overview_posts on ragna wiki    
 def view(request):
-    return render(request, "encyclopedia/view.html", {
+    return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
-    
+
+# view_post    
 def detailv(request, title):
-    entry_title = util.get_entry(title)
+    if not title in util.list_entries():
+        return HttpResponseNotFound("Could not find that entry!")
+    entire_entry = util.get_entry(title)
+    # Markdown to HTML
+    html_entry = markdown.markdown(entire_entry)
+    
     return render(request, "detailv.html", {
-        "title": entry_title,
-        "content": content
+        "title": title,
+        "content": html_entry
     })
 
