@@ -1,3 +1,6 @@
 from django import forms
-from django.forms import ModelForm
-from encyclopedia.models import Article
+
+class PageForm(forms.Form):
+    title = forms.CharField(max_length=100)
+    content = forms.CharField(widget=forms.Textarea)
+    nope = forms.BooleanField(required=False)
