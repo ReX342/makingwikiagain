@@ -34,9 +34,6 @@ def crp(request):
 
 # def index from tasks from lecture 3    
 def view(request):
-    pass
-    # if "entries" not in request.session:
-    #     request.session["entries"] = []
-    # return render(request, "encyclopedia/index.html", {
-    #     "entries": request.session["entries"]
-    # })
+    return render(request, "encyclopedia/view.html", {
+        "entries": util.list_entries()
+    })

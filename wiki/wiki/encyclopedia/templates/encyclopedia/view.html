@@ -8,9 +8,13 @@
     <h1>View All Pages</h1>
 
     <ul>
-        {% for entry in entries %}
-            <li><a href="{% url 'encyclopedia:view' %} {{ entry }}</a></li>
-        {% endfor %}
+    {% for entry in entries %}
+        <li>
+            <a href="{% url 'view' %}"> 
+            {{ entry }}
+            </a>
+        </li>
+    {% endfor %}
     </ul>
 
 {% endblock %}
