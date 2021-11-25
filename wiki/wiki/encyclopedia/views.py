@@ -54,7 +54,7 @@ def crp(request):
 
 # overview_posts on ragna wiki    
 def view(request):
-    return render(request, "encyclopedia/index.html", {
+    return render(request, "encyclopedia/view.html", {
         "entries": util.list_entries()
     })
 
