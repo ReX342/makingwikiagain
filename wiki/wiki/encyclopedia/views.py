@@ -37,3 +37,9 @@ def view(request):
     return render(request, "encyclopedia/view.html", {
         "entries": util.list_entries()
     })
+    
+def detailv(request, title):
+    title = util.get_entry(title)
+    return render(request, "detailv.html"), {
+        "title": title,
+    })
