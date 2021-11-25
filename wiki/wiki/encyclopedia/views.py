@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
 from django.shortcuts import render
 from django.urls import reverse
-from .forms import ContactForm
+from .forms import PageForm
 
 from . import util
 from . import forms
@@ -11,7 +11,6 @@ def index(request):
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
-
 
 #Create New Page
 # https://simpleisbetterthancomplex.com/article/2017/08/19/how-to-render-django-form-manually.html

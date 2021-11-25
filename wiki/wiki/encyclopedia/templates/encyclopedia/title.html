@@ -1,0 +1,6 @@
+<input type="text"
+       title="{{ form.title.title }}"
+       id="{{ form.title.id_for_label }}"
+       {% if form.title.value != None %}value="{{ form.title.value|stringformat:'s' }}"{% endif %}
+       maxlength="{{ form.title.field.max_length }}"
+       {% if form.title.field.required %}required{% endif %}>

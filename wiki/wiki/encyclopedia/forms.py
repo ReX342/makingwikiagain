@@ -16,10 +16,11 @@ class PageForm(forms.Form):
             'rows': '10', 
             'placeholder': 'Write your content here'
         })
+    )
     nope = forms.BooleanField(required=False)
     def clean(self):
-        cleaned_data = super(PagegForm, self).clean()
-    title = cleaned_data.get('title')
-    content = cleaned_data.get('content')
-    if nope:
-        raise forms.ValidationError('Not allowed to make this entry!')
+        cleaned_data = super(PageForm, self).clean()
+    # title = cleaned_data.get('title')
+    # content = cleaned_data.get('content')
+    # if nope:
+    #     raise forms.ValidationError('Not allowed to make this entry!')
