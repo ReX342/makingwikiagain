@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django import forms
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render
 from django.urls import reverse
+from .forms import ContactForm
 
 from . import util
 from . import forms
@@ -14,7 +14,15 @@ def index(request):
 
 
 #Create New Page
+# https://simpleisbetterthancomplex.com/article/2017/08/19/how-to-render-django-form-manually.html
 def crp(request):
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+        if form.is_valid():
+            pass  # does nothing, just trigger the validation
+    else:
+        form = PageForm()
+    return render(request, 'home.html', {'form': form})
     # if request.method == "POST":
     #     form = forms.PageForm(request.POST)
     #     if form.is_valid():
@@ -40,6 +48,7 @@ def view(request):
     
 def detailv(request, title):
     title = util.get_entry(title)
-    return render(request, "detailv.html"), {
+    return render(request, "detailv.html", {
         "title": title,
     })
+
