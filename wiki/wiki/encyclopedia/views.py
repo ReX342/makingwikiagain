@@ -46,8 +46,9 @@ def view(request):
     })
     
 def detailv(request, title):
-    title = util.get_entry(title)
+    entry_title = util.get_entry(title)
     return render(request, "detailv.html", {
-        "title": title,
+        "title": entry_title,
+        "content": content
     })
 
