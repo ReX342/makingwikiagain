@@ -8,3 +8,8 @@ def index(request):
         "entries": util.list_entries()
     })
 
+def crp(request):
+    #Create New Page
+    return render(request, "crp.html", {
+        
+    })
